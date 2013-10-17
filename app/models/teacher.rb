@@ -1,9 +1,10 @@
 require_relative '../../db/config'
 require 'date'
 
-class Student < ActiveRecord::Base
+class Teacher < ActiveRecord::Base
+  has_many :students
 
-  belongs_to :teacher
+
 
   validates :email, uniqueness: true, format: { with: /\w+@.\w+.{2,}/ }
   validates :age, :numericality => { :greater_than => 4 }
@@ -22,9 +23,7 @@ validates :phone, length: { minimum: 10 , tokenizer: lambda { |str| str.scan(/\d
       # student.name would likely be the syntax to access the name method.
       # What can we infer is needed in the Student Class?
 
-  def name
-    self.first_name + " " + self.last_name
-  end
+
 
   def age
     today = Date.today

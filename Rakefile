@@ -28,6 +28,11 @@ task "db:populate" do
   StudentsImporter.import
 end
 
+desc 'Start IRB with application environment loaded'
+task "console" do
+  exec "irb -r./config/application"
+end
+
 desc 'Retrieves the current schema version number'
 task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
